@@ -1,0 +1,28 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+gunicorn = "*"
+flask = "*"
+flask-sqlalchemy = "*"
+sklearn = "*"
+pandas = "*"
+numpy = "*"
+flask-bcrypt = "*"
+flask-login = "*"
+flask-wtf = "*"
+wtforms = "*"
+tweepy = "*"
+basilica = "*"
+python-decouple = "*"
+python-dotenv = "*"
+redis = "*"
+birdisle = "*"
+psycopg2-binary = "*"
+
+[requires]
+python_version = "3.7"
