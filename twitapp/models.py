@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
 
 
 class Tuser(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.BigInteger, primary_key=True)
     name = db.Column(db.String(25), nullable=False)
     newest_tweet_id = db.Column(db.BigInteger)
 
