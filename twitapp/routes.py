@@ -1,5 +1,5 @@
-from flask import render_template, flash, redirect, url_for, request
 from twitapp import app, db, bcrypt
+from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, login_required, current_user, logout_user
 from twitapp.forms import Registration, Login
 from twitapp.models import User, Tuser, Tweets
