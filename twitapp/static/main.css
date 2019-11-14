@@ -1,0 +1,53 @@
+body {
+    background-color : #353131;
+    margin-top : 5rem;
+}
+
+.site-header {
+    background-color : #000000;
+}
+
+.bg-light {
+    background-color: #242424 !important;
+}
+
+.text-lighter {
+    color : #e2e2e2;
+}
+
+.card {
+  padding : 1.5rem;
+  background-color : #2e2b2b;
+  border-radius : 5px;
+  border-style : solid;
+  border-color : #272323;
+  border-width : 1px;
+  border-top-width : 3px;
+}
+
+.adduser {
+    border-top-color: #0040FF;
+}
+
+.compareuser {
+  border-top-color : #FFBF00;
+}
+
+.cform {
+  border-top-color : #FA5858;
+}
+
+.about {
+  border-top-color : #74DF00;
+}
+
+.info-note {
+  border-left-style : solid;
+  border-left-color : #58FAF4;
+  border-left-width : 3px;
+}
+
+.input-box {
+  width : 360px;
+  height : 120px;
+}
