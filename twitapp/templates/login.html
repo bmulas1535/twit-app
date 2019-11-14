@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!-- Login form Start -->
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-5 cform card text-lighter">
+      <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-3">
+            Log in
+          </legend>
+          <div class="form-group">
+            {{ form.username.label(class="form-control-label") }}
+            {% if form.username.errors %}
+              {{ form.username(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                  {% for error in form.username.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+            {% else %}
+              {{ form.username(class="form-control form-control-lg") }}
+            {% endif %}
+          </div>
+          <div class="form-group">
+            {{ form.password.label(class="form-control-label") }}
+            {% if form.password.errors %}
+                {{ form.password(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                  {% for error in form.password.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+            {% else %}
+              {{ form.password(class="form-control form-control-lg") }}
+            {% endif %}
+          </div>
+          <div class="form-group">
+            {{ form.submit(class="btn btn-outline-danger") }}
+          </div>
+        </fieldset>
+      </form>
+      <div class="col pt-4 border-top">
+        <p>
+          <small class="text-muted">Need an account?</small>
+          <small><a class="ml-2" href="{{ url_for('register') }}"> Sign Up</a></small>
+        </p>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+
+{% endblock content %}

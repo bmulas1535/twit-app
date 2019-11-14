@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+<!-- HTML template for displaying the prediction message -->
+{% block content %}
+<div class="col"></div>
+  <div class="cform card text-lighter col-6">
+    <h2 class="border-bottom text-center">Prediction</h2>
+    <p class="text-center mt-3">
+      {{ message }}
+    </p>
+    <div class="text-center">
+      <a href="{{ url_for('home') }}" class="btn btn-outline-danger" role="button">
+        Head back
+      </a>
+    </div>
+  </div>
+<div class="col"></div>
+{% endblock content %}
+ 

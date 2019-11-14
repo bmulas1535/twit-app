@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Add user card -->
+<div class="col-6 container">
+  <div class="adduser card text-lighter">
+    <h4 class="mb-4 pb-2 border-bottom">Add a Twitter account.</h4>
+    <p class="text-center text-muted">Add at least 2 accounts to compare</p>
+    <form action="/user" method="post">
+      <div class="text-center">
+        <input type="text" name="user_name" placeholder="User to add" class="text-center">
+        <button class="btn btn-outline-primary ml-2" type="submit">
+          Add Account
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Compare users card -->
+<div class="col-6 container">
+  <div class="compareuser card text-lighter display-inline-block">
+    <h4 class="mb-4 pb-2 border-bottom">Whoms't did send that tweet?!</h4>
+    <form action="/compare" method="post">
+    <!-- Twitter accounts to compare --->
+    <!-- Labels! -->
+      <div class="row">
+        <div class="col text-center border-right">
+          <h4 class="">Account One</h4>
+        </div>
+        <div class="col text-center">
+          <h4 class="">Account Two</h4>
+        </div>
+      </div>
+      <!-- Drop down selectors -->
+      <div class="row mb-3">
+        <div class="col text-center">
+          <select name="user1">
+            {% for tuser in tusers %}
+            <option value="{{ tuser.name }}">{{ tuser.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col text-center">
+          <select name="user2">
+            {% for tuser in tusers %}
+            <option value="{{ tuser.name }}">{{ tuser.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+<!-- Tweet to predict whoms't sent it -->
+      <div class="col text-center mb-3">
+        <textarea name="tweet_text" class="input-box"> </textarea>
+      </div>
+      <div class="col text-center">
+        <button type="submit" class="btn btn-outline-warning">
+          Whoms't tweeted it?
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}

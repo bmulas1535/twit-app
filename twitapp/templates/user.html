@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>User: {{ title }}</h2>
+
+<p>{{ message }}</p>
+
+<ul>
+  {% for tweet in tweets %}
+  <li>{{ tweet.content }}</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

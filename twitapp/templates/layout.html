@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>{{title}}</title>
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+  <body>
+
+    <!-- Top navigation bar for site -->
+
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md bg-light navbar-dark fixed-top">
+        <!-- Brand logo and text -->
+        <div class="container">
+          <div class="navbar-brand">
+              <span>Twit-Off</span>
+          </div>
+          <!-- Button for collapsing at media breakpoint -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- Navbar Main -->
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <!-- Static links -->
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
+              <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
+            </div>
+            <div class="navbar-nav">
+              {% if current_user.is_authenticated %}
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- Main container -->
+    <main role="main" class="container">
+      <!-- Flashed messages -->
+      {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{category}}">
+              {{message}}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <div class="row">
+        {% block content %} {% endblock content %}
+      </div>
+    </main>
+    <hr>
+    <!-- Footer -->
+
+    <div class="container">
+      <div class="row">
+        <p class="text-muted">Created by: <a class="nav-item" href="https://bsm-portfolio.netlify.com">Brandon Mulas</a></p>
+      </div>
+    </div>
+
+  <!-- Optional Javascript src -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+</html>
