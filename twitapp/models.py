@@ -13,7 +13,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(25), nullable=False)
     password = db.Column(db.String(60), nullable=False)
     usergroup = db.Column(db.String(6), nullable=False, default="REG")
-    created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    created = db.Column(db.DateTime,
+                        nullable=False,
+                        default=datetime.utcnow)
 
 
 class Tuser(db.Model):
@@ -23,7 +25,6 @@ class Tuser(db.Model):
 
 
 class Tweets(db.Model):
-
     id = db.Column(db.BigInteger, primary_key=True)
     content = db.Column(db.Unicode(300))
     embedding = db.Column(db.PickleType, nullable=False)
