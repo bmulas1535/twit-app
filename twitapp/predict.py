@@ -5,6 +5,7 @@ from sklearn.linear_model import LogisticRegression
 from twitapp.models import Tuser
 from twitapp.twitter import BASILICA
 
+
 def predict_user(user1_name, user2_name, tweet_text, cache=None):
     """Determine and return which user is more likely to say something"""
     user_set = pickle.dumps((user1_name, user2_name))
@@ -13,8 +14,10 @@ def predict_user(user1_name, user2_name, tweet_text, cache=None):
     else:
         user1 = Tuser.query.filter(Tuser.name == user1_name).one()
         user2 = Tuser.query.filter(Tuser.name == user2_name).one()
-        user1_embeddings = np.array([tweet.embedding for tweet in user1.tweets])
-        user2_embeddings = np.array([tweet.embedding for tweet in user2.tweets])
+        user1_embeddings = np.array([tweet.embedding for
+                                     tweet in user1.tweets])
+        user2_embeddings = np.array([tweet.embedding for
+                                     tweet in user2.tweets])
         embeddings = np.vstack([user1_embeddings, user2_embeddings])
         labels = np.concatenate([np.ones(len(user1.tweets)),
                                  np.zeros(len(user2.tweets))])

@@ -26,7 +26,7 @@ def register():
     form = Registration()
     if form.validate_on_submit():
         hashed_pw = bcrypt.generate_password_hash(
-        form.password.data).decode('utf-8')
+            form.password.data).decode('utf-8')
         user = User(username=form.username.data, password=hashed_pw)
         db.session.add(user)
         db.session.commit()
@@ -44,7 +44,7 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
 
         if user and bcrypt.check_password_hash(user.password,
-                                              form.password.data):
+                                               form.password.data):
             login_user(user)
             return redirect(url_for('home'))
 
@@ -62,7 +62,7 @@ def logout():
 @app.route('/user', methods=['POST'])
 @app.route('/user/<name>', methods=['GET'])
 @login_required
-def user(name=None,message=''):
+def user(name=None, message=''):
     name = name or request.values['user_name']
 
     try:
@@ -72,10 +72,10 @@ def user(name=None,message=''):
         tweets = Tuser.query.filter(Tuser.name == name).one().tweets
 
     except Exception as e:
-        message = "Error adding {}: {}".format(name,e)
-        tweets=[]
+        message = "Error adding {}: {}".format(name, e)
+        tweets = []
     return render_template('user.html', title=name, tweets=tweets,
-    message=message)
+                           message=message)
 
 
 @app.route('/compare', methods=['POST'])
@@ -93,7 +93,7 @@ def compare(message=''):
             user2 if prediction else user1)
 
     return render_template('prediction.html', title='Prediction',
-                            message=message)
+                           message=message)
 
 
 @app.route('/reset')

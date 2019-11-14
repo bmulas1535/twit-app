@@ -15,27 +15,30 @@ BASILICA = basilica.Connection(config('BASILICA_KEY'))
 
 
 def add_or_update_user(username):
-    """Add or update a user and their Tweets, or else error"""
+    """Add or update a user and their Tweets, or else raise"""
     try:
-        twitter_user=TWITTER.get_user(username)
-        db_user=(Tuser.query.get(twitter_user.id) or
-        Tuser(id=twitter_user.id, name=username))
+        twitter_user = TWITTER.get_user(username)
+        db_user = (Tuser.query.get(twitter_user.id) or
+                   Tuser(id=twitter_user.id, name=username))
         db.session.add(db_user)
         tweets = twitter_user.timeline(count=200, exclude_replies=True,
-        include_rts=False, tweet_mode='extended', since_id=db_user.newest_tweet_id)
+                                       include_rts=False,
+                                       tweet_mode='extended',
+                                       since_id=db_user.newest_tweet_id)
 
         if tweets:
             db_user.newest_tweet_id = tweets[0].id
 
         for tweet in tweets:
-            embedding = BASILICA.embed_sentence(tweet.full_text, model='twitter')
+            embedding = BASILICA.embed_sentence(tweet.full_text,
+                                                model='twitter')
             db_tweet = Tweets(id=tweet.id, content=tweet.full_text[:300],
-            embedding=embedding)
+                              embedding=embedding)
             db_user.tweets.append(db_tweet)
             db.session.add(db_tweet)
 
     except Exception as e:
-        print('Error processing {}: {}'.format(username,e))
+        print('Error processing {}: {}'.format(username, e))
         raise e
 
     else:

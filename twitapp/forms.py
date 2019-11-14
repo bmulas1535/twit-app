@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import TextAreaField
 from wtforms.validators import DataRequired, Length, EqualTo
 from twitapp.models import User
+
 
 class Registration(FlaskForm):
     username = StringField(
