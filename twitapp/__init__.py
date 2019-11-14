@@ -9,7 +9,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '1d06cefddc423f3464396352ac04df66'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app_data.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app_data.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
