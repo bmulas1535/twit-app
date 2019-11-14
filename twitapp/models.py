@@ -24,8 +24,8 @@ class Tuser(db.Model):
 
 class Tweets(db.Model):
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.BigInteger, primary_key=True)
     content = db.Column(db.Unicode(300))
     embedding = db.Column(db.PickleType, nullable=False)
-    tuser_id = db.Column(db.Integer, db.ForeignKey('tuser.id'), nullable=False)
+    tuser_id = db.Column(db.BigInteger, db.ForeignKey('tuser.id'), nullable=False)
     tuser = db.relationship('Tuser', backref=db.backref('tweets', lazy=True))
